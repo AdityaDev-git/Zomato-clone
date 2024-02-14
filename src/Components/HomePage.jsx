@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import '../style/style.css'
 import QuickSearches from './QuickSearches'
 import { useEffect } from "react";
-import {  fetchCityList } from "../features/restaurants/restaurantSlice";
+import {  fetchRestaurantsList } from "../features/restaurants/restaurantSlice";
 import { Typeahead } from "react-bootstrap-typeahead";
 
 export const HomePage = () => {
@@ -13,13 +13,13 @@ export const HomePage = () => {
   const [selectedResto, setSelectedResto] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { ct }= useSelector((state) => state.restaurant);
+  const { restoList }= useSelector((state) => state.restaurant);
 
   useEffect(() => {
-    dispatch(fetchCityList());
+    dispatch(fetchRestaurantsList());
   }, [dispatch]);
 
-  const cityList = ct.reduce((values,item)=> {
+  const cityList = restoList.reduce((values,item)=> {
     if (!values.includes(item.city)) {
         values.push(item.city);
     }
@@ -29,7 +29,7 @@ export const HomePage = () => {
   const handleCitySelection=(value)=>{
     setSelectedCity(value);
   }
-  const filteredRestaurants  = setSelectedCity ? ct.filter(restaurant=>restaurant.city === selectedCity[0]): [];
+  const filteredRestaurants  = setSelectedCity ? restoList.filter(restaurant=>restaurant.city === selectedCity[0]): [];
 
   const handleRestoSelection= (resto)=>{
     setSelectedResto(resto);

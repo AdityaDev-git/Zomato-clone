@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
-export const fetchCityList = createAsyncThunk("restaurants/fetchCities", async () => {
-  const response = await fetch("/city");
+export const fetchRestaurantsList = createAsyncThunk("restaurants/fetchList", async () => {
+  const response = await fetch("/list");
   return response.json();
 });
 
@@ -34,29 +34,29 @@ export const fetchFilteredRestaurants = createAsyncThunk("restaurants/fetchByFil
 const restaurantSlice = createSlice({
   name:'restaurant',
   initialState:{
-    ct:[],
+    restoList:[],
     meal:[],
     filterData: [],
-    statusCt: 'idle',
+    statusResto: 'idle',
     statusMeal: 'idle',
     statusFilter: 'idle',
-    errorCt: null,
+    errorResto: null,
     errorMeal: null,
     errorFilter: null,
   },
   reducers:{},
   extraReducers:(builder)=>{
     builder
-    .addCase(fetchCityList.pending, (state, action) => {
-      state.statusCt = "loading";
+    .addCase(fetchRestaurantsList.pending, (state, action) => {
+      state.statusResto = "loading";
     })
-    .addCase(fetchCityList.fulfilled, (state, action) => {
-      state.statusCt = "succeeded";
-      state.ct = action.payload;
+    .addCase(fetchRestaurantsList.fulfilled, (state, action) => {
+      state.statusResto = "succeeded";
+      state.restoList = action.payload;
     })
-    .addCase(fetchCityList.rejected, (state, action) => {
-      state.statusCt = "failed";
-      state.errorCt = action.error.message;
+    .addCase(fetchRestaurantsList.rejected, (state, action) => {
+      state.statusResto = "failed";
+      state.errorResto = action.error.message;
     })
     .addCase(fetchMealType.pending, (state, action) => {
       state.statusMeal = "loading";
