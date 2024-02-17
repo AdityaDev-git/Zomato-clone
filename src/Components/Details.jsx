@@ -1,13 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Layout from "../Layouts/Layout";
-import { Tabs, Tab } from "react-bootstrap";
+import { Tabs, Tab} from "react-bootstrap";
 import "../style/style.css";
+
 
 const Details = () => {
 
+  const navigate = useNavigate();
   const location = useLocation();
   const restaurant = location.state;
+
+  const handleClick=(menuItems)=>{
+    navigate("/cart",{state:menuItems})
+  }
+
   
   return (
     <Layout>
@@ -17,7 +25,7 @@ const Details = () => {
         </div>
         <div className="d-flex flex-wrap justify-content-between py-4">
         <h1>{restaurant.name}</h1>
-        <button className=" btn btn-danger">Place Order</button>
+        <button className=" btn btn-danger" onClick={()=>handleClick(restaurant.menu)}>Place Order</button>
         </div>
         <div className="details">
           <Tabs defaultActiveKey="home" id="tab">
@@ -36,7 +44,7 @@ const Details = () => {
             </Tab>
           </Tabs>
         </div>
-      </div>
+      </div>      
     </Layout>
   );
 };

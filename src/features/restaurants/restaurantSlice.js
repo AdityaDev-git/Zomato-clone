@@ -84,4 +84,3 @@ const restaurantSlice = createSlice({
 });
 
 export default restaurantSlice.reducer;
-export const {addId} = restaurantSlice.actions;

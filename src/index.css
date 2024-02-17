@@ -4,3 +4,10 @@ body {
     font-family: "Poppins", sans-serif;
     background-color:hsla(0, 0%, 98%, 1) ;
   }
+  a {
+    text-decoration: none;
+  }
+  ul,
+  ol {
+    list-style: none;
+  }

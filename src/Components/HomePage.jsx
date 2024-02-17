@@ -6,6 +6,8 @@ import QuickSearches from './QuickSearches'
 import { useEffect } from "react";
 import {  fetchRestaurantsList } from "../features/restaurants/restaurantSlice";
 import { Typeahead } from "react-bootstrap-typeahead";
+import Auth from "./Auth";
+
 
 export const HomePage = () => {
 
@@ -41,8 +43,7 @@ export const HomePage = () => {
     <div className="container-xxxl header-img">
                 <div className="header-blend d-flex flex-column align-items-center justify-content-center container-fluid">
                 <div className="container text-right pt-3">
-                    <button className="login btn border-0">Login</button>
-                    <button className="createA btn rounded-1">Create an account</button>
+                    <Auth/>
                 </div>
                 <div className="d-flex flex-column align-items-center justify-content-center text-center px-4 pt-3 pb-5">
                         <div className="logo rounded-circle text-center">
